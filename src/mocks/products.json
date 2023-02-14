@@ -1,0 +1,65 @@
+[
+  {
+    "id": "p1",
+    "name": "Empanada de Jamón y queso",
+    "category": "Entradas",
+    "categoryId": "entreeID",
+    "image": "https://www.cucinare.tv/wp-content/uploads/2020/01/Empanadas-de-jamon-y-queso.jpg",
+    "ingredients": "Jamon y queso",
+    "price": 300 
+  },
+  {
+    "id": "p2",
+    "name": "Empanada de Carne",
+    "image": "https://assets.unileversolutions.com/recipes-v2/239857.jpg",
+    "category": "Entradas",
+    "categoryId": "entreeID",
+    "ingredients": "Carne",
+    "price": 300 
+  },
+  {
+    "id": "p3",
+    "name": "Empanada de Pollo",
+    "image": "https://static5.depositphotos.com/1010176/424/i/600/depositphotos_4247533-stock-photo-pies-in-basket.jpg",
+    "category": "Entradas",
+    "categoryId": "entreeID",
+    "ingredients": "Pollo",
+    "price": 300 
+  },
+  {
+    "id": "p4",
+    "name": "Sándwich completo",
+    "image": "https://st3.depositphotos.com/9834068/13978/i/450/depositphotos_139780504-stock-photo-delicious-and-tasty-sandwiches-with.jpg",
+    "category": "Entradas",
+    "categoryId": "entreeID",
+    "ingredients": "Jamón, queso, tomate, lechuga, huevo y (carne o pollo)",
+    "price": 900 
+  },
+  {
+    "id": "p5",
+    "name": "Burguer casera",
+    "image": "https://st5.depositphotos.com/15113232/63089/i/450/depositphotos_630894220-stock-photo-close-delicious-whole-hamburger-wooden.jpg",
+    "category": "Hamburguesas",
+    "categoryId": "burguerID",
+    "ingredients": "Carne Doble carne, jamón, queso, lechuga, tomate, huevo, cebolla caremalizada, y porción de papas fritas",
+    "price": 1300
+  },
+  {
+    "id": "p6",
+    "name": "Milanesa de pollo",
+    "image": "https://st2.depositphotos.com/1692343/8315/i/450/depositphotos_83154880-stock-photo-homemade-breaded-german-weiner-schnitzel.jpg",
+    "category": "Milanesas",
+    "categoryId": "breadedID",
+    "ingredients": "Pollo, con guarnición a elección",
+    "price": 1200
+  },
+  {
+    "id": "p7",
+    "name": "Milanesa de carne",
+    "image": "https://st3.depositphotos.com/1373322/18960/i/450/depositphotos_189602592-stock-photo-fried-veal-cutlet-milanese-with.jpg",
+    "category": "Milanesas",
+    "categoryId": "breadedID",
+    "ingredients": "Carne, con guarnición a elección",
+    "price": 1200
+  }
+]

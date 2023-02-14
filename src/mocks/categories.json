@@ -1,0 +1,17 @@
+[
+  {
+    "categoryId": "entreeID",
+    "name": "Entradas",
+    "icon": "https://cdn-icons-png.flaticon.com/512/5100/5100198.png"
+  },
+  {
+    "categoryId": "burguerID",
+    "name": "Hamburguesas",
+    "icon": "https://cdn-icons-png.flaticon.com/512/1161/1161695.png"
+  },
+  {
+    "categoryId": "breadedID",
+    "name": "Milanesas",
+    "icon": "https://cdn-icons-png.flaticon.com/512/8043/8043486.png"
+  }
+]
