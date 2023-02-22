@@ -10,6 +10,7 @@ export const getProductById = (itemId) => {
         image: product.image,
         price: product.price,
         category: product.category,
+        alert: product.alert
       };
       setTimeout(() => {
         resolve(productFiltered);

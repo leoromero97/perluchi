@@ -14,6 +14,7 @@ function ItemList({ items }) {
                 image={product.image}
                 price={product.price}
                 category={product.category}
+                alert={product.alert}
               />
             </Link>
           );

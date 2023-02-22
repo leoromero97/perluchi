@@ -6,7 +6,11 @@
     "categoryId": "entreeID",
     "image": "https://www.cucinare.tv/wp-content/uploads/2020/01/Empanadas-de-jamon-y-queso.jpg",
     "ingredients": "Jamon y queso",
-    "price": 300 
+    "price": 300,
+    "alert": {
+      "message": "Más vendido",
+      "type": "ALERT"
+    }
   },
   {
     "id": "p2",

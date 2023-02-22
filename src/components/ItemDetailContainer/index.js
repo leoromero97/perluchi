@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { getProductById } from "../../utils/getProduct";
 import ItemDetail from "../ItemDetail";
+import { clsx } from 'clsx';
 
-function ItemDetailContainer({ itemId }) {
+function ItemDetailContainer({ className, itemId }) {
   const [product, setProducts] = useState();
 
   useEffect(() => {
@@ -10,7 +11,7 @@ function ItemDetailContainer({ itemId }) {
   }, [itemId]);
 
   return (
-    <div className="flex gap-6 flex-wrap items-center justify-center">
+    <div className={clsx('flex gap-6 items-center justify-center max-w-screen-xl w-full py-8', className)}>
       {product && (
         <ItemDetail
           key={product.id}
@@ -18,6 +19,7 @@ function ItemDetailContainer({ itemId }) {
           image={product.image}
           price={product.price}
           category={product.category}
+          alert={product.alert}
         />
       )}
     </div>
