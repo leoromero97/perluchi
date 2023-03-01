@@ -1,17 +1,24 @@
+import { ROUTES } from "./routes";
+
 export const NAV_ITEMS = [
   {
     id: 'home',
-    href: './',
+    href: ROUTES.HOME,
     label: 'Inicio'
   },
   {
-    id: 'products',
-    href: './productos',
-    label: 'Productos'
+    id: 'about',
+    href: ROUTES.ABOUT,
+    label: 'Nosotros'
+  },
+  {
+    id: 'categories',
+    href: ROUTES.CATEGORIES,
+    label: 'Categorias'
   },
   {
     id: 'contact',
-    href: './contacto',
+    href: ROUTES.CONTACT,
     label: 'Contacto'
   },
 ]

@@ -1,10 +1,18 @@
-import Navbar from '../Navbar';
+import { clsx } from "clsx";
+import Navbar from "../Navbar";
+import Footer from '../Footer/index';
 
-function Layout({ children }) {
+function Layout({ className, children }) {
   return (
-    <main className="flex flex-col items-center w-full h-auto min-h-screen">
+    <main
+      className={clsx(
+        "flex flex-col items-center justify-between w-full h-auto min-h-screen bg-yellow-gray-default",
+        className
+      )}
+    >
       <Navbar />
       {children}
+      <Footer  />
     </main>
   );
 }
