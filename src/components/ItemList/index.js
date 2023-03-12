@@ -1,5 +1,5 @@
-import Item from "../Item";
 import { Link } from "react-router-dom";
+import Item from "../Item";
 import { ROUTES } from "../../constants/routes";
 
 function ItemList({ items }) {
@@ -8,13 +8,16 @@ function ItemList({ items }) {
       {items &&
         items.map((product) => {
           return (
-            <Link to={`${ROUTES.PRODUCT_DETAIL}/${product.id}`} key={product.id}>
+            <Link
+              to={`${ROUTES.PRODUCT_DETAIL}/${product.id}`}
+              key={product.id}
+            >
               <Item
                 name={product.name}
-                image={product.image}
+                image={product.imageUrl}
                 price={product.price}
                 category={product.category}
-                alert={product.alert}
+                note={product.note}
               />
             </Link>
           );

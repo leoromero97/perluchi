@@ -1,6 +1,6 @@
-# Perluchi App Eccomerce 
+# Perluchi App Ecommerce Cart 
 
-## Aplicación de tipo Ecommerce para Perluchi Alta Cocina
+## Aplicación de tipo Ecommerce con carrito de compra para el negocio de comida Perluchi Alta Cocina
 
 ## Tecnologías
 - React js

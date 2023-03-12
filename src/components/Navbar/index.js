@@ -1,13 +1,18 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import CartWidget from "../CartWidget";
 import NavItem from "./NavItem";
 import { NAV_ITEMS } from "../../constants/navItems";
 import { ROUTES } from "../../constants/routes";
 import logotipo from "../../assets/logotipo-perluchi-black.svg";
+import icBars from "../../assets/ic-bars.svg";
+import icMultiply from "../../assets/ic-multiply.svg";
+import useCart from "../../hooks/cart/useCart";
 
-function Navbar() {
+function Navbar({ onClick, opened }) {
+  const { total } = useCart();
   return (
-    <div className="flex items-center justify-center w-full py-2 px-4 bg-yellow-light">
+    <div className="flex items-center justify-center w-full py-2 px-4 bg-yellow-100">
       <div className="flex items-center justify-between w-full max-w-screen-xl">
         <Link to={ROUTES.HOME} className="flex items-center">
           <img src={logotipo} alt="logotipo" className="w-20" />
@@ -18,13 +23,23 @@ function Navbar() {
             {NAV_ITEMS.map((item) => {
               return (
                 <li key={item.id}>
-                  <NavItem label={item.label} href={item.href} />
+                  <NavItem
+                    label={item.label}
+                    to={item.to}
+                    subItems={item?.subItems}
+                  />
                 </li>
               );
             })}
           </ul>
-          <CartWidget countCartItems={1} />
         </div>
+        <CartWidget countCartItems={total.productQuantity} />
+        <button onClick={onClick} className="flex h-6 w-6 md:hidden">
+          <img
+            src={opened ? icMultiply : icBars}
+            alt={opened ? "Cerrar menú" : "Abrir menu"}
+          />
+        </button>
       </div>
     </div>
   );

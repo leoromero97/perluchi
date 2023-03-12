@@ -1,11 +1,45 @@
 import Button from "../Button";
-import Chip from "../Chip/index";
+import Breadcrumb from "../Breadcrumb";
+import Chip from "../Chip";
+import { ROUTES } from "../../constants/routes";
+import useCart from "../../hooks/cart/useCart";
 
-function ItemDetail({ image, name, price, category, alert }) {
-  const lastPrice = price + price * 0.4;
-  const handleOnClick = () => console.log("Agregando al carrito..");
+function ItemDetail({
+  categoryLabel = "",
+  description = "",
+  id = "",
+  ingredients = [],
+  image,
+  name = "",
+  price = 0,
+  note = "",
+}) {
+  const { addProduct } = useCart();
+  const percentaje = 0.4;
+  const lastPrice = price * percentaje + Number(price);
+  const product = {
+    name: name,
+    price: price,
+    id: id,
+    imageUrl: image,
+  };
+
+  const handleOnClick = () => {
+    addProduct({ ...product, quantity: 1 });
+  };
+  const messageOrder = `Hola Perluchi, quisiera pedir ${name}, con el valor de $${price}`;
+  const items = [
+    { label: "Inicio", slug: ROUTES.HOME },
+    { label: categoryLabel, slug: `${ROUTES.CATEGORY}/${categoryLabel}` },
+    { label: name, slug: "" },
+  ];
+
   return (
-    <div className="flex-col bg-white flex w-full border-2 rounded-2xl p-4 gap-20">
+    <div
+      key={id}
+      className="flex-col bg-white flex w-full border-2 rounded-2xl p-4 gap-10"
+    >
+      <Breadcrumb items={items} />
       <div className="flex w-full flex-col md:flex-row gap-4">
         {image && (
           <div className="h-96 w-full">
@@ -16,31 +50,41 @@ function ItemDetail({ image, name, price, category, alert }) {
             />
           </div>
         )}
-        <div className="flex flex-col px-6 gap-2 w-full justify-between text-yellow-black">
+        <div className="flex flex-col px-6 gap-2 w-full justify-between text-yellow-900">
           <div className="flex items-center gap-6">
-            <Chip label={category} type="CATEGORY" />
-            {alert && <Chip label={alert?.message} type={alert?.type} />}
+            {note && <Chip label={note} />}
           </div>
-          <p className="text-3xl font-bold">{name}</p>
-          <span className="text-sm text-gray-400">Antes: ${lastPrice}</span>
-          <span className="text-5xl font-medium">$ {price}</span>
+          {name && <p className="text-3xl font-bold">{name}</p>}
+          <span className="text-sm text-gray-500">Antes: ${lastPrice}</span>
+          {price && <span className="text-5xl font-medium">${price}</span>}
           <div className="flex flex-col gap-6 items-center">
-            <Button isPrimary text="Agregar al carrito" className="w-full"  onClick={handleOnClick} />
-            <Button isSecondary text="Pedir ahora" className="w-full" />
+            <Button
+              isButton
+              isPrimary
+              text="Agregar al carrito"
+              className="w-full"
+              onClick={handleOnClick}
+            />
+            <Button
+              isSecondary
+              text="Pedir ahora"
+              className="w-full"
+              messageOrderExternal={messageOrder}
+            />
           </div>
         </div>
       </div>
       <div className="flex flex-col gap-4">
-        <p className="text-3xl font-bold">Descripción</p>
-        <p className="text-base text-yellow-black">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <p className="text-3xl font-bold text-yellow-700">Descripción</p>
+        <p className="text-base text-yellow-900">{description}</p>
+      </div>
+      <div className="flex flex-col gap-4">
+        <p className="text-3xl font-bold text-yellow-700">Ingredientes</p>
+        {ingredients.map((ingredient) => (
+          <li key={ingredient} className="text-base text-yellow-900 list-disc">
+            {ingredient}
+          </li>
+        ))}
       </div>
     </div>
   );

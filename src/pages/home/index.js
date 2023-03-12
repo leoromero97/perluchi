@@ -1,7 +1,7 @@
 import React from "react";
+import Banner from "../../components/Banner/index";
 import ItemListContainer from "../../components/ItemListContainer";
 import Layout from "../../components/Layout";
-import Banner from "../../components/Banner/index";
 
 function Home() {
   return (

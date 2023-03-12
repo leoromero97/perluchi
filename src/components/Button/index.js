@@ -1,19 +1,70 @@
-import { clsx } from "clsx";
+import { Link } from "react-router-dom";
+import clsx from "clsx";
+import {
+  baseButtonStyle,
+  primaryButtonStyle,
+  secondaryButtonStyle,
+  tertiaryButtonStyle,
+} from "./constants";
 
-function Button({ className, text, isPrimary, isSecondary, onClick }) {
+function Button({
+  className,
+  text = "",
+  isButton,
+  isPrimary,
+  isSecondary,
+  isTertiary,
+  messageOrderExternal = "",
+  onClick,
+  to = "",
+}) {
   return (
-    <button
-      onClick={onClick}
-      className={clsx(
-        "px-7 py-4 text-lg md:text-xl font-bold rounded-2xl transition-all",
-        className,
-        isPrimary && "bg-yellow-light hover:bg-yellow-dark text-yellow-black",
-        isSecondary &&
-          "bg-blue hover:bg-indigo-500 text-yellow-black hover:text-yellow-50"
+    <>
+      {isButton && (
+        <button
+          onClick={onClick}
+          className={clsx(
+            baseButtonStyle,
+            className,
+            isPrimary && primaryButtonStyle,
+            isSecondary && secondaryButtonStyle,
+            isTertiary && tertiaryButtonStyle
+          )}
+        >
+          {text}
+        </button>
       )}
-    >
-      {text}
-    </button>
+      {messageOrderExternal && (
+        <a
+          href={`https://wa.me/541152212488?text=${messageOrderExternal}`}
+          rel="noopener noreferrer"
+          target="_blank"
+          className={clsx(
+            baseButtonStyle,
+            className,
+            isPrimary && primaryButtonStyle,
+            isSecondary && secondaryButtonStyle,
+            isTertiary && tertiaryButtonStyle
+          )}
+        >
+          {text}
+        </a>
+      )}
+      {to && (
+        <Link
+          to={to}
+          className={clsx(
+            baseButtonStyle,
+            className,
+            isPrimary && primaryButtonStyle,
+            isSecondary && secondaryButtonStyle,
+            isTertiary && tertiaryButtonStyle
+          )}
+        >
+          {text}
+        </Link>
+      )}
+    </>
   );
 }
 
