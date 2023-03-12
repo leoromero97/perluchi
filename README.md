@@ -20,13 +20,19 @@
 
 ## Configuración de compilación
 
-### Dependencias
+### Dependencias necesarias
 - Node js
 - npm
 
-### Comandos
-$ npm i
+### Comandos para correr el proyecto
+```bash
+// Instalar dependencias necesarias
+$ npm install
+
+// Levantar y correr el proyecto en http://localhost:3000 o el puerto que este disponible
 $ npm start
+```
+
 
 ## Vista previa
 
