@@ -15,7 +15,7 @@ function CartPage() {
 
   return (
     <Layout>
-      <div className="flex flex-col max-w-screen-xl w-full gap-10 py-8 px-4 text-yellow-900">
+      <div className="flex flex-col max-w-screen-xl w-full gap-10 py-8 px-4 text-yellow-900 items-center">
         <h1 className="text-5xl font-semibold text-center">
           Carrito de compra
         </h1>
