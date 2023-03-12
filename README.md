@@ -36,6 +36,9 @@ $ npm start
 
 ## Vista previa
 
+### Deploy 
+[Perluchi en Vercel](https://perluchi.vercel.app/)
+
 ### Móvil
 - Ecommerce
 [demo mobile.webm](https://user-images.githubusercontent.com/57498210/224568906-1699d6ac-c7b0-4b32-be93-bdfdcaba52a4.webm)
