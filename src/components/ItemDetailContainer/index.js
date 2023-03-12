@@ -1,25 +1,67 @@
 import { useEffect, useState } from "react";
-import { getProductById } from "../../utils/getProduct";
+import clsx from "clsx";
+import {
+  collection,
+  query,
+  getDocs,
+  where,
+  documentId,
+} from "firebase/firestore";
+import { PacmanLoader } from "react-spinners";
+import Error from "../Error";
 import ItemDetail from "../ItemDetail";
-import { clsx } from 'clsx';
+import { db } from "../../firebase/config";
+import errorSearchVector from "../../assets/vc-undraw_web_search_re_efla.svg";
 
 function ItemDetailContainer({ className, itemId }) {
-  const [product, setProducts] = useState();
+  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const isError = !itemId || data === undefined;
 
   useEffect(() => {
-    getProductById(itemId).then((res) => setProducts(res));
+    const getProducts = async () => {
+      setIsLoading(true);
+      const q = query(
+        collection(db, "perluchiFood"),
+        where(documentId(), "==", itemId)
+      );
+      const querySnapshot = await getDocs(q);
+      const products = [];
+      querySnapshot.forEach((doc) => {
+        products.push({ id: doc.id, ...doc.data() });
+      });
+
+      setData(products[0]);
+      setIsLoading(false);
+    };
+    getProducts();
   }, [itemId]);
 
   return (
-    <div className={clsx('flex gap-6 items-center justify-center max-w-screen-xl w-full py-8', className)}>
-      {product && (
+    <div
+      className={clsx(
+        "flex gap-6 items-center justify-center max-w-screen-xl w-full py-8",
+        className
+      )}
+    >
+      {isLoading && <PacmanLoader color="#40372B" />}
+      {!isLoading && !isError && (
         <ItemDetail
-          key={product.id}
-          name={product.name}
-          image={product.image}
-          price={product.price}
-          category={product.category}
-          alert={product.alert}
+          image={data?.imageUrl}
+          name={data?.name}
+          id={data?.id}
+          categoryLabel={data?.categoryLabel}
+          price={data?.price}
+          description={data?.description}
+          ingredients={data?.ingredients}
+          note={data?.note}
+        />
+      )}
+      {isError && !isLoading && (
+        <Error
+          message="El producto que buscas no se encuentra disponible"
+          image={errorSearchVector}
+          imageClassName="h-64"
         />
       )}
     </div>

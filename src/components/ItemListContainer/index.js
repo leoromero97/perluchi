@@ -1,16 +1,27 @@
 import { useEffect, useState } from "react";
-import PRODUCTS_MOCK from "../../mocks/products.json";
-import CATEGORIES_MOCK from "../../mocks/categories.json";
-import { getProducts } from "../../utils/getProducts";
-import ItemList from "../ItemList";
-import Chip from "../Chip";
 import { clsx } from "clsx";
+import { collection, query, getDocs } from "firebase/firestore";
+import { PacmanLoader } from "react-spinners";
+import ItemList from "../ItemList";
+import { db } from "../../firebase/config";
 
 function ItemListContainer({ className, title }) {
-  const [products, setProducts] = useState();
+  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getProducts(PRODUCTS_MOCK).then((res) => setProducts(res));
+    const getProducts = async () => {
+      setIsLoading(true);
+      const q = query(collection(db, "perluchiFood"));
+      const querySnapshot = await getDocs(q);
+      const products = [];
+      querySnapshot.forEach((doc) => {
+        products.push({ id: doc.id, ...doc.data() });
+      });
+      setData(products);
+      setIsLoading(false);
+    };
+    getProducts();
   }, []);
 
   return (
@@ -20,18 +31,8 @@ function ItemListContainer({ className, title }) {
         className
       )}
     >
-      <h2 className="text-5xl font-semibold text-yellow-black">{title}</h2>
-      <div className="flex items-center gap-2 md:gap-16 overflow-x-scroll md:overflow-hidden">
-        {CATEGORIES_MOCK &&
-          CATEGORIES_MOCK.map((category) => (
-            <Chip
-              key={category.categoryId}
-              label={category.name}
-              type="CATEGORY"
-            />
-          ))}
-      </div>
-      <ItemList items={products} />
+      <h1 className="text-5xl font-semibold text-yellow-900">{title}</h1>
+      {isLoading ? <PacmanLoader color="#40372B" /> : <ItemList items={data} />}
     </div>
   );
 }

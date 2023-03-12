@@ -1,24 +1,26 @@
+import { CATEGORIES } from "./categories";
 import { ROUTES } from "./routes";
 
 export const NAV_ITEMS = [
   {
-    id: 'home',
-    href: ROUTES.HOME,
-    label: 'Inicio'
+    id: "home",
+    to: ROUTES.HOME,
+    label: "Inicio",
   },
   {
-    id: 'about',
-    href: ROUTES.ABOUT,
-    label: 'Nosotros'
+    id: "about",
+    to: ROUTES.ABOUT,
+    label: "Nosotros",
   },
   {
-    id: 'categories',
-    href: ROUTES.CATEGORIES,
-    label: 'Categorias'
+    id: "categories",
+    to: "#",
+    label: "Categorias",
+    subItems: CATEGORIES,
   },
   {
-    id: 'contact',
-    href: ROUTES.CONTACT,
-    label: 'Contacto'
+    id: "contact",
+    to: ROUTES.CONTACT,
+    label: "Contacto",
   },
-]
+];

@@ -7,23 +7,32 @@ module.exports = {
     extend: {
       colors: {
         yellow: {
-          light: '#FCDBB5',
-          mid: '#FFE9A1',
-          dark: '#E8CB92',
+          default: '#FCDBB5',
+          100: '#FFF1E2',
+          300: '#FFC37F',
+          700: '#BB782A',
+          800: '#4D2C06',
+          900: '#40372B',
         },
-        'yellow-black': '#40372B',
         violet: '#BE94FF',
         green: '#C7FFD3',
-        blue: '#94A4FF',
+        'green-dark': '#27412C',
+        blue: '#C7DAFF',
+        'blue-dark': '#5B97B0',
         red: '#FFB9A1',
+        'red-dark': '#261D1A',
         'yellow-gray': {default: '#FCF9F5'},
       },
       backgroundImage: {
-        'image-banner': "url('../src/assets/img-plato-banner.png')",
+        'image-banner': "url('https://firebasestorage.googleapis.com/v0/b/perluchi-ecommerce-react.appspot.com/o/hamburguesa-completa.jpg?alt=media&token=8a26059a-f91c-410c-9ced-59bf0ee00cc1')",
       },
       height: {
         u518: '518px',
+        140: '40rem'
       },
+      width: {
+        134: '34rem',
+      }
     },
   },
   plugins: [],
