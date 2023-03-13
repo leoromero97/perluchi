@@ -4,26 +4,33 @@ import Error from "../../components/Error/index";
 import Layout from "../../components/Layout";
 import { ROUTES } from "../../constants/routes";
 import useCart from "../../hooks/cart/useCart";
-import emptyCartVector from "../../assets/vc-undraw_empty_cart.svg";
+import vectorEmptyCart from "../../assets/vc-undraw_empty_cart.svg";
 import imagePlaceholder from "../../assets/image-placeholder.png";
+import iconTash from "../../assets/ic-trash-alt.svg";
 
 function CartPage() {
-  const { products, total, clearCartTotal, clearProductsCart } = useCart();
+  const { products, total, clearCartTotal, clearProductsCart, removeProduct } = useCart();
+  
   const handleOnClear = () => {
     clearCartTotal();
     clearProductsCart();
   };
 
+  const handleOnTash = (id) => {
+    const productToRemove = products.filter((productId) => productId.id === id).map((product) => product)[0];
+    removeProduct(productToRemove);
+  }
+
   return (
     <Layout>
       <div className="flex flex-col max-w-screen-xl w-full gap-10 py-8 px-4 text-yellow-900 items-center pt-32">
-        <h1 className="text-5xl font-semibold text-center">
+        <h1 className="text-3xl md:text-5xl font-semibold text-center">
           Carrito de compra
         </h1>
         {products && total.productQuantity > 0 ? (
           <div className="flex flex-col md:flex-row bg-white w-full border-2 rounded-2xl px-2 py-4 md:px-4 gap-10 md:gap-20">
             <ul className="w-full flex flex-col gap-1">
-              <p className="text-yellow-700 text-3xl font-semibold mb-8">
+              <p className="text-yellow-700 text-xl md:text-3xl font-semibold mb-8">
                 Vas a comprar
               </p>
               <div className="flex flex-col w-full gap-2 md:gap-6">
@@ -31,12 +38,12 @@ function CartPage() {
                   products.map((product) => (
                     <li
                       key={product?.id}
-                      className="grid grid-flow-col grid-cols-4 md:max-w-2xl items-center gap-8 text-yellow-900 text-sm md:text-base font-semibold bg-yellow-gray-default rounded-md odd:bg-yellow-100"
+                      className="grid grid-flow-col grid-cols-5 md:max-w-2xl items-center gap-8 text-yellow-900 text-xs md:text-base font-semibold bg-yellow-gray-default rounded-md odd:bg-yellow-100 justify-items-center"
                     >
                       <img
                         src={product?.imageUrl || imagePlaceholder}
                         alt={product?.name}
-                        className="h-10 w-10 md:h-16 md:w-16 rounded-md"
+                        className="h-8 w-8 md:h-16 md:w-16 rounded-md"
                       />
                       <p>{product?.name}</p>
                       <p>
@@ -45,6 +52,9 @@ function CartPage() {
                           : product?.quantity.toString().concat(" unidad")}
                       </p>
                       <p>${product?.price}</p>
+                      <button onClick={() => handleOnTash(product.id)} className="hover:bg-red active:bg-red rounded-md p-1">
+                        <img src={iconTash} alt="Icono tacho de basura" />
+                      </button>
                     </li>
                   ))}
               </div>
@@ -52,7 +62,7 @@ function CartPage() {
             {total.productQuantity !== 0 && (
               <div className="flex flex-col gap-6 md:gap-10 w-full text-yellow-900 text-lg justify-between">
                 <div className="flex flex-col w-full gap-4">
-                  <p className="text-yellow-700 text-3xl font-semibold mb-8">
+                  <p className="text-yellow-700 text-xl md:text-3xl font-semibold mb-8">
                     Resumen
                   </p>
                   <div className="flex gap-4">
@@ -85,7 +95,7 @@ function CartPage() {
         ) : (
           <Error
             message="Aún no tenes productos en tu carrito, agregalos para disfrutar del mejor sabor"
-            image={emptyCartVector}
+            image={vectorEmptyCart}
             imageClassName="h-64"
           />
         )}

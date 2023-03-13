@@ -35,6 +35,15 @@ const useCartProducts = () => {
     updateCartTotal(updatedProducts);
   };
 
+  const removeProduct = (productToRemove) => {
+    const updatedProducts = products.filter(
+      (product) => product.id !== productToRemove.id
+    );
+
+    setProducts(updatedProducts);
+    updateCartTotal(updatedProducts);
+  };
+
   const clearProductsCart = () => {
     setProducts([]);
   };
@@ -42,6 +51,7 @@ const useCartProducts = () => {
   return {
     products,
     addProduct,
+    removeProduct,
     clearProductsCart,
   };
 };
