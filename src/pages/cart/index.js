@@ -4,7 +4,7 @@ import Error from "../../components/Error/index";
 import Layout from "../../components/Layout";
 import { ROUTES } from "../../constants/routes";
 import useCart from "../../hooks/cart/useCart";
-import errorSearchVector from "../../assets/vc-undraw_web_search_re_efla.svg";
+import emptyCartVector from "../../assets/vc-undraw_empty_cart.svg";
 import imagePlaceholder from "../../assets/image-placeholder.png";
 
 function CartPage() {
@@ -85,7 +85,8 @@ function CartPage() {
         ) : (
           <Error
             message="Aún no tenes productos en tu carrito, agregalos para disfrutar del mejor sabor"
-            image={errorSearchVector}
+            image={emptyCartVector}
+            imageClassName="h-64"
           />
         )}
       </div>
