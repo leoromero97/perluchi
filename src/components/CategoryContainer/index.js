@@ -40,6 +40,7 @@ function CategoryContainer({ categoryLabel }) {
         <Error
           message="La categoría que buscás, no se encuentra disponible"
           image={errorSearchVector}
+          imageClassName="h-64"
         />
       )}
     </div>
