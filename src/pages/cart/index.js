@@ -1,10 +1,11 @@
 import React from "react";
 import Button from "../../components/Button";
+import Error from "../../components/Error/index";
 import Layout from "../../components/Layout";
 import { ROUTES } from "../../constants/routes";
 import useCart from "../../hooks/cart/useCart";
-import Error from "../../components/Error/index";
 import errorSearchVector from "../../assets/vc-undraw_web_search_re_efla.svg";
+import imagePlaceholder from "../../assets/image-placeholder.png";
 
 function CartPage() {
   const { products, total, clearCartTotal, clearProductsCart } = useCart();
@@ -15,25 +16,25 @@ function CartPage() {
 
   return (
     <Layout>
-      <div className="flex flex-col max-w-screen-xl w-full gap-10 py-8 px-4 text-yellow-900 items-center">
+      <div className="flex flex-col max-w-screen-xl w-full gap-10 py-8 px-4 text-yellow-900 items-center pt-32">
         <h1 className="text-5xl font-semibold text-center">
           Carrito de compra
         </h1>
         {products && total.productQuantity > 0 ? (
           <div className="flex flex-col md:flex-row bg-white w-full border-2 rounded-2xl px-2 py-4 md:px-4 gap-10 md:gap-20">
-            <ul className="w-full flex flex-col gap-1 bg-yellow-gray-default rounded-md">
+            <ul className="w-full flex flex-col gap-1">
               <p className="text-yellow-700 text-3xl font-semibold mb-8">
                 Vas a comprar
               </p>
-              <div className="flex flex-col w-full gap-6">
+              <div className="flex flex-col w-full gap-2 md:gap-6">
                 {products &&
                   products.map((product) => (
                     <li
                       key={product?.id}
-                      className="grid grid-flow-col grid-cols-4 md:max-w-2xl items-center gap-8 rounded-lg text-yellow-900 text-sm md:text-base font-semibold"
+                      className="grid grid-flow-col grid-cols-4 md:max-w-2xl items-center gap-8 text-yellow-900 text-sm md:text-base font-semibold bg-yellow-gray-default rounded-md odd:bg-yellow-100"
                     >
                       <img
-                        src={product?.imageUrl}
+                        src={product?.imageUrl || imagePlaceholder}
                         alt={product?.name}
                         className="h-10 w-10 md:h-16 md:w-16 rounded-md"
                       />

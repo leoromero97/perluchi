@@ -7,10 +7,10 @@ function Home() {
   return (
     <Layout>
       <Banner
-        title="Pasión por la cocina"
+        title="Perluchi, pasión por la cocina"
         subtitle="Date el gusto y conocé los mejores platos de la ciudad"
         buttonText="Realizar pedido" 
-        className="mb-20"
+        className="mb-20 pt-16"
       />
       <ItemListContainer title="Menú" className="mb-20" />
     </Layout>

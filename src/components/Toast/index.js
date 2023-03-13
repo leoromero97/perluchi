@@ -7,7 +7,7 @@ function Toast({ className, isError, isInfo, isSuccess, message }) {
   return (
     <div
       className={clsx(
-        "flex items-center px-2 py-1 rounded-md gap-6",
+        "flex items-center px-2 py-1 rounded-md gap-2",
         isError && "bg-red text-red-dark",
         isSuccess && "bg-green text-green-dark",
         isInfo && "bg-yellow-100 text-yellow-800",

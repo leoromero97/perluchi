@@ -3,10 +3,11 @@ import Button from "../Button/";
 
 function Banner({ className, title, subtitle, buttonText }) {
   const messageOrder = "Hola Perluchi, me gustaría realizar un pedido...";
+
   return (
     <div
       className={clsx(
-        "w-full flex flex-col md:flex-row items-center justify-center bg-image-banner h-96 md:h-140 bg-no-repeat bg-center bg-cover",
+        "w-full flex flex-col md:flex-row items-center justify-center bg-image-banner h-120 md:h-140 bg-no-repeat bg-center bg-cover",
         className
       )}
     >
