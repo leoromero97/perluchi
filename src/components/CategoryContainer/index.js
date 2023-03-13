@@ -30,8 +30,8 @@ function CategoryContainer({ categoryLabel }) {
   }, [categoryLabel]);
 
   return (
-    <div className="flex gap-10 flex-col items-center justify-center py-20">
-      <h1 className="text-5xl font-semibold text-yellow-900">
+    <div className="flex gap-10 flex-col items-center justify-center py-20 pt-32  max-w-screen-xl w-full">
+      <h1 className="text-5xl font-semibold text-yellow-900 text-center">
         Categoría: {categoryLabel}
       </h1>
       {isLoading && <PacmanLoader color="#40372B" />}

@@ -7,7 +7,7 @@ function Detail() {
   const { id } = useParams();
   return (
     <Layout>
-      <ItemDetailContainer itemId={id} className="pt-20" />
+      <ItemDetailContainer itemId={id} className="pt-32" />
     </Layout>
   );
 }

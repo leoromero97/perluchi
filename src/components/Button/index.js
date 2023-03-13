@@ -36,7 +36,7 @@ function Button({
       )}
       {messageOrderExternal && (
         <a
-          href={`https://wa.me/541152212488?text=${messageOrderExternal}`}
+          href={`https://wa.me/541137802707?text=${messageOrderExternal}`}
           rel="noopener noreferrer"
           target="_blank"
           className={clsx(

@@ -6,25 +6,22 @@ import logotipo from "../../assets/logotipo-perluchi.svg";
 function Footer() {
   return (
     <div className="bg-yellow-900 text-yellow-100 w-full flex flex-col items-center justify-center py-8 px-4">
-      <div className="w-full max-w-screen-xl flex flex-col md:flex-row items-start md:mb-20">
-        <div className="flex flex-col w-full md:px-4">
+      <div className="w-full max-w-screen-xl flex flex-col md:flex-row items-start md:mb-20 md:gap-10 md:justify-between">
+        <div className="flex flex-col md:px-4">
           <Link to={ROUTES.HOME} className="flex items-center">
             <img src={logotipo} alt="logotipo" className="w-20" />
-            <span className="text-3xl font-semibold text-yellow-default">
-              Perluchi
-            </span>
           </Link>
-          <p className="text-lg text-yellow-default">Comé como en casa</p>
+          <p className="text-lg text-yellow-default">Perluchi, comé como en casa</p>
         </div>
-        <div className="flex flex-col w-full gap-2 py-10 md:px-4">
-          <h3 className="text-yellow-300 text-2xl font-semibold">Horarios</h3>
+        <div className="flex flex-col gap-2 py-10 md:px-4 md:max-w-md">
+          <h3 className="text-yellow-default text-2xl font-semibold">Horarios</h3>
           <p className="text-sm">
             Nuestros días y horarios de atención son de
             <strong> lunes a viernes, de 11 a 16 horas.</strong>
           </p>
         </div>
-        <div className="flex flex-col w-full gap-2 py-10 md:px-4">
-          <p className="text-yellow-300 text-2xl font-semibold">
+        <div className="flex flex-col gap-2 py-10 md:px-4">
+          <p className="text-yellow-default text-2xl font-semibold">
             Teléfono y redes
           </p>
           <ul className="flex flex-col gap-4">
@@ -50,7 +47,7 @@ function Footer() {
         to="https://leogromero-website.netlify.app/"
         target="_blank"
         title="Leonardo Gerbacio"
-        className="text-yellow-default text-sm"
+        className="text-yellow-default text-sm hover:font-semibold"
       >
         Desarrollado por Leonardo E. Gerbacio Romero
       </Link>

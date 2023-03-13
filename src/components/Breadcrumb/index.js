@@ -13,7 +13,7 @@ function Breadcrumb({ className, items = [] }) {
           <Link
             to={item.slug}
             title={item.label}
-            className="font-bold text-xs text-yellow-900"
+            className="font-bold text-xs md:text-sm text-yellow-900"
           >
             <p>{item.label}</p>
           </Link>

@@ -28,6 +28,7 @@ module.exports = {
       },
       height: {
         u518: '518px',
+        120: '36rem',
         140: '40rem'
       },
       width: {

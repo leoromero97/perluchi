@@ -6,11 +6,11 @@ import Layout from "../../components/Layout";
 function About() {
   return (
     <Layout>
-      <div className="flex flex-col max-w-screen-xl w-full gap-10 py-8 px-4 text-yellow-900">
+      <div className="flex flex-col max-w-screen-xl w-full gap-10 py-8 px-4 text-yellow-900 pt-32">
         <h1 className="text-5xl font-semibold text-center">
           Sobre nosotros
         </h1>
-        <div className="flex w-full gap-16">
+        <div className="flex flex-col md:flex-row w-full gap-16">
           <InstagramEmbed
             url="https://www.instagram.com/reel/CeFBnnYgKWb/?utm_source=ig_web_copy_link"
             placeholderSpinner={<PacmanLoader />}

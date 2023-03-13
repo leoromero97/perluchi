@@ -12,7 +12,7 @@ export const INFO_CONTACT = [
     iconLight: iconWhatsAppLight,
     iconAlt: "Ícono WhatsApp",
     label: "+54 11 5221-2488",
-    slug: "https://wa.me/541152212488?text=Hola!",
+    slug: "https://wa.me/541137802707?text=Hola!",
   },
   {
     id: "instagramId",
