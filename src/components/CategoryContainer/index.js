@@ -4,7 +4,7 @@ import { PacmanLoader } from "react-spinners";
 import Error from "../Error";
 import ItemList from "../ItemList";
 import { db } from "../../firebase/config";
-import errorSearchVector from "../../assets/vc-undraw_web_search_re_efla.svg";
+import vectorErrorSearch from "../../assets/vc-undraw_web_search_re_efla.svg";
 
 function CategoryContainer({ categoryLabel }) {
   const [dataByCategory, setDataByCategory] = useState([]);
@@ -31,7 +31,7 @@ function CategoryContainer({ categoryLabel }) {
 
   return (
     <div className="flex gap-10 flex-col items-center justify-center py-20 pt-32  max-w-screen-xl w-full">
-      <h1 className="text-5xl font-semibold text-yellow-900 text-center">
+      <h1 className="text-3xl md:text-5xl font-semibold text-yellow-900 text-center">
         Categoría: {categoryLabel}
       </h1>
       {isLoading && <PacmanLoader color="#40372B" />}
@@ -39,7 +39,7 @@ function CategoryContainer({ categoryLabel }) {
       {isError && !isLoading && (
         <Error
           message="La categoría que buscás, no se encuentra disponible"
-          image={errorSearchVector}
+          image={vectorErrorSearch}
           imageClassName="h-64"
         />
       )}

@@ -7,7 +7,7 @@ function Contact() {
   return (
     <Layout>
       <div className="flex flex-col max-w-screen-xl w-full gap-10 py-8 px-4 text-yellow-900 pt-32">
-        <h1 className="text-5xl font-semibold text-center">Contacto</h1>
+        <h1 className="text-3xl md:text-5xl font-semibold text-center">Contacto</h1>
         <div className="flex flex-col bg-white w-full border-2 rounded-2xl gap-6">
           <div className="flex flex-col w-full p-4 gap-2 ">
             <h3 className="text-yellow-700 text-2xl font-semibold">

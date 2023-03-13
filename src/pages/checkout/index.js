@@ -10,7 +10,7 @@ import { ROUTES } from "../../constants/routes";
 import { db } from "../../firebase/config";
 import useCart from "../../hooks/cart/useCart";
 import orderConfirmedVector from "../../assets/vc-undraw_order_confirmed.svg";
-import emptyCartVector from "../../assets/vc-undraw_empty_cart.svg";
+import vectorEmptyCart from "../../assets/vc-undraw_empty_cart.svg";
 
 const initialValues = {
   firstName: "",
@@ -66,7 +66,7 @@ function CheckoutPage() {
   return (
     <Layout>
       <div className="flex flex-col max-w-screen-xl w-full gap-10 py-8 px-4 text-yellow-900 pt-32 items-center">
-        <h1 className="text-5xl font-semibold text-center">
+        <h1 className="text-3xl md:text-5xl font-semibold text-center">
           {orderId ? "Finalizaste tu compra" : "Completá tu compra"}
         </h1>
         {orderId && (
@@ -90,7 +90,7 @@ function CheckoutPage() {
           </div>
         )}
         {products && total.productQuantity > 0 && !orderId && (
-          <div className="flex flex-col md:flex-row bg-white w-full border-2 rounded-2xl p-4 gap-10 md:gap-20">
+          <div className="flex flex-col md:flex-row bg-white w-full border-2 rounded-2xl p-4 gap-10 md:gap-20 md:justify-between">
             <OrderForm
               onChange={handleOnChange}
               onSubmit={handleOnSubmit}
@@ -98,12 +98,13 @@ function CheckoutPage() {
               productQuantity={total.productQuantity}
               totalPrice={total.totalPrice}
               errorValidationEmail={errorValidation}
-              className="md:w-134"
+              className="md:w-130 order-2 md:order-1"
             />
             {total.productQuantity !== 0 && (
               <OrderSummary
                 productQuantity={total.productQuantity}
                 totalPrice={total.totalPrice}
+                className="md:w-134 md:order-2"
               />
             )}
           </div>
@@ -111,7 +112,7 @@ function CheckoutPage() {
         {!orderId && total.productQuantity === 0 && (
           <Error
             message="Aún no tenés productos en tu carrito, agregalos para disfrutar del mejor sabor"
-            image={emptyCartVector}
+            image={vectorEmptyCart}
             imageClassName="h-64"
           />
         )}

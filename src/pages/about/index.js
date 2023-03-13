@@ -7,7 +7,7 @@ function About() {
   return (
     <Layout>
       <div className="flex flex-col max-w-screen-xl w-full gap-10 py-8 px-4 text-yellow-900 pt-32">
-        <h1 className="text-5xl font-semibold text-center">
+        <h1 className="text-3xl md:text-5xl font-semibold text-center">
           Sobre nosotros
         </h1>
         <div className="flex flex-col md:flex-row w-full gap-16">
@@ -18,7 +18,7 @@ function About() {
             style={{ borderRadius: 20 }}
           />
           <div className="flex flex-col gap-6 w-full text-yellow-900">
-            <h2 className="text-yellow-700 text-3xl font-semibold">
+            <h2 className="text-yellow-700 text-xl md:text-3xl font-semibold">
               Perluchi Alta Cocina
             </h2>
             <p className="text-xl  font-semibold">

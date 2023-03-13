@@ -11,7 +11,7 @@ import { PacmanLoader } from "react-spinners";
 import Error from "../Error";
 import ItemDetail from "../ItemDetail";
 import { db } from "../../firebase/config";
-import errorSearchVector from "../../assets/vc-undraw_web_search_re_efla.svg";
+import vectorErrorSearch from "../../assets/vc-undraw_web_search_re_efla.svg";
 
 function ItemDetailContainer({ className, itemId }) {
   const [data, setData] = useState();
@@ -60,7 +60,7 @@ function ItemDetailContainer({ className, itemId }) {
       {isError && !isLoading && (
         <Error
           message="El producto que buscas no se encuentra disponible"
-          image={errorSearchVector}
+          image={vectorErrorSearch}
           imageClassName="h-64"
         />
       )}

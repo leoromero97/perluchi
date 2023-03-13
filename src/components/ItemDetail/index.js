@@ -64,9 +64,9 @@ function ItemDetail({
           <div className="flex items-center gap-6">
             {note && <Chip label={note} />}
           </div>
-          {name && <p className="text-3xl font-bold">{name}</p>}
+          {name && <p className="text-xl md:text-3xl font-bold">{name}</p>}
           <span className="text-sm text-gray-500">Antes: ${lastPrice}</span>
-          {price && <span className="text-5xl font-medium">${price}</span>}
+          {price && <span className="text-3xl md:text-5xl font-medium">${price}</span>}
           <div className="flex flex-col gap-6 items-center">
             {cartProductId && <Toast isSuccess message={productMessage} />}
             <Button
@@ -86,11 +86,11 @@ function ItemDetail({
         </div>
       </div>
       <div className="flex flex-col gap-4">
-        <p className="text-3xl font-bold text-yellow-700">Descripción</p>
+        <p className="text-xl md:text-3xl font-bold text-yellow-700">Descripción</p>
         <p className="text-base text-yellow-900">{description}</p>
       </div>
       <div className="flex flex-col gap-4">
-        <p className="text-3xl font-bold text-yellow-700">Ingredientes</p>
+        <p className="text-xl md:text-3xl font-bold text-yellow-700">Ingredientes</p>
         {ingredients.map((ingredient) => (
           <li key={ingredient} className="text-base text-yellow-900 list-disc">
             {ingredient}

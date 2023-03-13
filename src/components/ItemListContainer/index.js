@@ -31,7 +31,7 @@ function ItemListContainer({ className, title }) {
         className
       )}
     >
-      <h1 className="text-5xl font-semibold text-yellow-900">{title}</h1>
+      <h1 className="text-3xl md:text-5xl font-semibold text-yellow-900">{title}</h1>
       {isLoading ? <PacmanLoader color="#40372B" /> : <ItemList items={data} />}
     </div>
   );
