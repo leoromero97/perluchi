@@ -31,6 +31,9 @@ module.exports = {
         120: '36rem',
         140: '40rem'
       },
+      maxWidth: {
+        u638: '638px',
+      },
       width: {
         130: '30rem',
         134: '34rem',
