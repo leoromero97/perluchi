@@ -48,11 +48,21 @@ const useCartProducts = () => {
     setProducts([]);
   };
 
+  const decreaseProductQuantity = (productToDecrease) => {
+    const updatedProducts = products.map((product) => {
+      return updateQuantitySafely(product, productToDecrease, -1);
+    });
+
+    setProducts(updatedProducts);
+    updateCartTotal(updatedProducts);
+  };
+
   return {
     products,
     addProduct,
     removeProduct,
     clearProductsCart,
+    decreaseProductQuantity,
   };
 };
 

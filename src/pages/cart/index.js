@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../components/Button";
 import Error from "../../components/Error/index";
 import Layout from "../../components/Layout";
+import Modal from "../../components/Modal";
 import { ROUTES } from "../../constants/routes";
 import useCart from "../../hooks/cart/useCart";
 import vectorEmptyCart from "../../assets/vc-undraw_empty_cart.svg";
@@ -9,17 +10,46 @@ import imagePlaceholder from "../../assets/image-placeholder.png";
 import iconTash from "../../assets/ic-trash-alt.svg";
 
 function CartPage() {
-  const { products, total, clearCartTotal, clearProductsCart, removeProduct } = useCart();
-  
+  const {
+    products,
+    total,
+    clearCartTotal,
+    clearProductsCart,
+    removeProduct,
+    decreaseProductQuantity,
+  } = useCart();
+  const [isOpen, setIsOpen] = useState(false);
+  const [idProduct, setIdProduct] = useState("");
+
   const handleOnClear = () => {
     clearCartTotal();
     clearProductsCart();
   };
-
+  
   const handleOnTash = (id) => {
-    const productToRemove = products.filter((productId) => productId.id === id).map((product) => product)[0];
+    setIdProduct(id);
+    setIsOpen(true);
+  };
+
+  const handleDecrement = (id) => {
+    const product = products
+      .filter((productId) => productId.id === id)
+      .map((product) => product)[0];
+    if (product.quantity <= 1) {
+      removeProduct(product);
+      return;
+    }
+    decreaseProductQuantity(product);
+    setIsOpen(!isOpen)
+  };
+
+  const handleRemove = (id) => {
+    const productToRemove = products
+      .filter((productId) => productId.id === id)
+      .map((product) => product)[0];
     removeProduct(productToRemove);
-  }
+    setIsOpen(!isOpen)
+  };
 
   return (
     <Layout>
@@ -28,9 +58,9 @@ function CartPage() {
           Carrito de compra
         </h1>
         {products && total.productQuantity > 0 ? (
-          <div className="flex flex-col md:flex-row bg-white w-full border-2 rounded-2xl px-2 py-4 md:px-4 gap-10 md:gap-20">
+          <div className="flex flex-col md:flex-row bg-white w-full border-2 rounded-2xl px-2 py-4 md:px-4 gap-16 md:gap-6">
             <ul className="w-full flex flex-col gap-1">
-              <p className="text-yellow-700 text-xl md:text-3xl font-semibold mb-8">
+              <p className="text-yellow-700 text-xl md:text-3xl font-semibold mb-4 md:mb-8">
                 Vas a comprar
               </p>
               <div className="flex flex-col w-full gap-2 md:gap-6">
@@ -52,7 +82,10 @@ function CartPage() {
                           : product?.quantity.toString().concat(" unidad")}
                       </p>
                       <p>${product?.price * product.quantity}</p>
-                      <button onClick={() => handleOnTash(product.id)} className="hover:bg-red active:bg-red rounded-md p-1">
+                      <button
+                        onClick={() => handleOnTash(product.id)}
+                        className="hover:bg-red active:bg-red rounded-md p-1"
+                      >
                         <img src={iconTash} alt="Icono tacho de basura" />
                       </button>
                     </li>
@@ -62,7 +95,7 @@ function CartPage() {
             {total.productQuantity !== 0 && (
               <div className="flex flex-col gap-6 md:gap-10 w-full text-yellow-900 text-lg justify-between">
                 <div className="flex flex-col w-full gap-4">
-                  <p className="text-yellow-700 text-xl md:text-3xl font-semibold mb-8">
+                  <p className="text-yellow-700 text-xl md:text-3xl font-semibold md:mb-4">
                     Resumen
                   </p>
                   <div className="flex gap-4">
@@ -100,6 +133,19 @@ function CartPage() {
           />
         )}
       </div>
+      <Modal
+        show={isOpen}
+        onClose={() => setIsOpen(!isOpen)}
+        title="¿Cuántas unidades te gustaría eliminar?"
+        primaryAction={{
+          text: "Eliminar una",
+          action: () => handleDecrement(idProduct),
+        }}
+        secondaryAction={{
+          text: "Eliminar todas",
+          action: () => handleRemove(idProduct),
+        }}
+      />
     </Layout>
   );
 }
