@@ -51,7 +51,7 @@ function CartPage() {
                           ? product?.quantity.toString().concat(" unidades")
                           : product?.quantity.toString().concat(" unidad")}
                       </p>
-                      <p>${product?.price}</p>
+                      <p>${product?.price * product.quantity}</p>
                       <button onClick={() => handleOnTash(product.id)} className="hover:bg-red active:bg-red rounded-md p-1">
                         <img src={iconTash} alt="Icono tacho de basura" />
                       </button>
