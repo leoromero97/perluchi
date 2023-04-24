@@ -1,21 +1,28 @@
 import React from "react";
 import clsx from "clsx";
 import Button from "../Button";
-import Input from "../Input";
+import Dropdown from "../Dropdown";
+import Textfield from "../Textfield";
 import Toast from "../Toast";
 import { ROUTES } from "../../constants/routes";
+import { PAYMENT_METHODS } from "../../constants/paymentMethods";
 
 function OrderForm({
   onSubmit,
   className,
   values,
   onChange,
+  onPaymentMethodChange,
   errorValidationEmail,
 }) {
+  const handlePaymentMethodChange = (newPaymentMethod) => {
+    onPaymentMethodChange(newPaymentMethod);
+  };
+
   return (
     <div className={clsx("flex flex-col w-full", className)}>
       <form onSubmit={onSubmit} className="flex flex-col w-full gap-6">
-        <Input
+        <Textfield
           placeholder="Nombre"
           name="firstName"
           value={values.firstName}
@@ -23,14 +30,14 @@ function OrderForm({
           required
           maxLength={20}
         />
-        <Input
+        <Textfield
           placeholder="Apellido"
           name="lastName"
           value={values.lastName}
           onChange={onChange}
           maxLength={20}
         />
-        <Input
+        <Textfield
           placeholder="Número de celular"
           name="phoneNumber"
           value={values.phoneNumber}
@@ -39,7 +46,7 @@ function OrderForm({
           type="number"
           maxLength={16}
         />
-        <Input
+        <Textfield
           placeholder="Dirección"
           name="address"
           value={values.address}
@@ -47,7 +54,12 @@ function OrderForm({
           required
           maxLength={28}
         />
-        <Input
+        <Dropdown
+          options={PAYMENT_METHODS}
+          onChange={handlePaymentMethodChange}
+          placeholder="Selecciona tu método de pago"
+        />
+        <Textfield
           placeholder="Email"
           name="email"
           value={values.email}
@@ -55,14 +67,16 @@ function OrderForm({
           required
           type="email"
         />
-        <Input
-          placeholder="Email"
-          name="emailValidate"
-          value={values.emailValidate}
-          onChange={onChange}
-          required
-          type="email"
-        />
+        {values.email && (
+          <Textfield
+            placeholder="Email"
+            name="emailValidate"
+            value={values.emailValidate}
+            onChange={onChange}
+            required
+            type="email"
+          />
+        )}
         {errorValidationEmail && (
           <Toast
             message="Los emails no son iguales, intentá nuevamente"
