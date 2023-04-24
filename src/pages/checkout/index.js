@@ -17,15 +17,17 @@ const initialValues = {
   lastName: "",
   phoneNumber: "",
   address: "",
+  paymentMethod: "",
   email: "",
   emailValidate: "",
-  orderSummary: [],
+  orderSummary: {},
 };
 
 function CheckoutPage() {
   const [values, setValues] = useState(initialValues);
   const [orderId, setOrderId] = useState("");
   const [errorValidation, setErrorValidation] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("");
   const { total, products, clearCartTotal, clearProductsCart } = useCart();
   const date = new Date();
   const dateOrder = `${date.toLocaleDateString()} - ${date.getHours()}:${date.getMinutes()} hs`;
@@ -43,9 +45,14 @@ function CheckoutPage() {
     date: dateOrder,
   };
 
+  const handlePaymentMethodChange = (newPaymentMethod) => {
+    setPaymentMethod(newPaymentMethod);
+  };
+
   const handleOnChange = (e) => {
     const { value, name } = e.target;
-    setValues({ ...values, [name]: value, orderSummary });
+    setValues({ ...values, [name]: value, orderSummary, paymentMethod });
+    console.log('Formulario', values);
   };
 
   const handleOnSubmit = async (e) => {
@@ -94,6 +101,7 @@ function CheckoutPage() {
             <OrderForm
               onChange={handleOnChange}
               onSubmit={handleOnSubmit}
+              onPaymentMethodChange={handlePaymentMethodChange}
               values={values}
               productQuantity={total.productQuantity}
               totalPrice={total.totalPrice}
