@@ -29,7 +29,8 @@ module.exports = {
       height: {
         u518: '518px',
         120: '36rem',
-        140: '40rem'
+        140: '40rem',
+        160: '60rem'
       },
       maxWidth: {
         u638: '638px',

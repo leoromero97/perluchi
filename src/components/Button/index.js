@@ -10,6 +10,7 @@ import {
 function Button({
   className,
   text = "",
+  icon,
   isButton,
   isPrimary,
   isSecondary,
@@ -24,6 +25,7 @@ function Button({
         <button
           onClick={onClick}
           className={clsx(
+            "flex items-center justify-center gap-4",
             baseButtonStyle,
             className,
             isPrimary && primaryButtonStyle,
@@ -31,6 +33,13 @@ function Button({
             isTertiary && tertiaryButtonStyle
           )}
         >
+          {icon && (
+            <img
+              src={icon.src}
+              alt={icon.alt || "Ícono"}
+              className={icon.className}
+            />
+          )}
           {text}
         </button>
       )}
@@ -40,6 +49,7 @@ function Button({
           rel="noopener noreferrer"
           target="_blank"
           className={clsx(
+            "flex items-center justify-center gap-4",
             baseButtonStyle,
             className,
             isPrimary && primaryButtonStyle,
@@ -47,6 +57,13 @@ function Button({
             isTertiary && tertiaryButtonStyle
           )}
         >
+          {icon && (
+            <img
+              src={icon.src}
+              alt={icon.alt || "Ícono"}
+              className={icon.className}
+            />
+          )}
           {text}
         </a>
       )}
@@ -54,6 +71,7 @@ function Button({
         <Link
           to={to}
           className={clsx(
+            "flex items-center justify-center gap-4",
             baseButtonStyle,
             className,
             isPrimary && primaryButtonStyle,
@@ -61,6 +79,13 @@ function Button({
             isTertiary && tertiaryButtonStyle
           )}
         >
+          {icon && (
+            <img
+              src={icon.src}
+              alt={icon.alt || "Ícono"}
+              className={icon.className}
+            />
+          )}
           {text}
         </Link>
       )}

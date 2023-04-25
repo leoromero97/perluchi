@@ -3,9 +3,9 @@ import clsx from "clsx";
 import Button from "../Button";
 import Dropdown from "../Dropdown";
 import Textfield from "../Textfield";
-import Toast from "../Toast";
 import { ROUTES } from "../../constants/routes";
 import { PAYMENT_METHODS } from "../../constants/paymentMethods";
+import { DELIVERY_CHANNEL } from "../../constants/deliveryChannel";
 
 function OrderForm({
   onSubmit,
@@ -13,87 +13,70 @@ function OrderForm({
   values,
   onChange,
   onPaymentMethodChange,
-  errorValidationEmail,
+  onDeliveryChange,
 }) {
-  const handlePaymentMethodChange = (newPaymentMethod) => {
+  const handlePaymentMethodChange = (newPaymentMethod) =>
     onPaymentMethodChange(newPaymentMethod);
-  };
+  const handleDeliveryChange = (newDeliveryChannel) =>
+    onDeliveryChange(newDeliveryChannel);
+  const { name, phoneNumber, address, deliveryChannel } = values;
 
   return (
     <div className={clsx("flex flex-col w-full", className)}>
       <form onSubmit={onSubmit} className="flex flex-col w-full gap-6">
         <Textfield
-          placeholder="Nombre"
-          name="firstName"
-          value={values.firstName}
+          label="Nombre y apellido"
+          placeholder="Hugo Bareiro"
+          name="name"
+          value={name}
           onChange={onChange}
           required
           maxLength={20}
         />
         <Textfield
-          placeholder="Apellido"
-          name="lastName"
-          value={values.lastName}
-          onChange={onChange}
-          maxLength={20}
-        />
-        <Textfield
-          placeholder="Número de celular"
+          label="Número de celular"
+          placeholder="1122334848"
           name="phoneNumber"
-          value={values.phoneNumber}
+          value={phoneNumber}
           onChange={onChange}
           required
           type="number"
           maxLength={16}
         />
-        <Textfield
-          placeholder="Dirección"
-          name="address"
-          value={values.address}
-          onChange={onChange}
-          required
-          maxLength={28}
-        />
         <Dropdown
+          label="Elegí cómo tener tu pedido"
+          options={DELIVERY_CHANNEL}
+          onChange={handleDeliveryChange}
+          placeholder="Selecciona tu método de pago"
+        />
+        {deliveryChannel === "Delivery" && (
+          <Textfield
+            label="Ingresa tu dirección"
+            placeholder="Cóndor 2233"
+            name="address"
+            value={address}
+            onChange={onChange}
+            required
+            maxLength={28}
+          />
+        )}
+        <Dropdown
+          label="Elegí el método de pago"
           options={PAYMENT_METHODS}
           onChange={handlePaymentMethodChange}
           placeholder="Selecciona tu método de pago"
         />
-        <Textfield
-          placeholder="Email"
-          name="email"
-          value={values.email}
-          onChange={onChange}
-          required
-          type="email"
-        />
-        {values.email && (
-          <Textfield
-            placeholder="Email"
-            name="emailValidate"
-            value={values.emailValidate}
-            onChange={onChange}
-            required
-            type="email"
-          />
-        )}
-        {errorValidationEmail && (
-          <Toast
-            message="Los emails no son iguales, intentá nuevamente"
-            isError
-          />
-        )}
         <div className="flex flex-col w-full items-center gap-4 pt-4">
           <Button
             isButton
             isPrimary
-            text="Confirmar datos"
+            text="Realizar pedido"
             className="w-full"
           />
           <Button
             to={ROUTES.CART}
-            isSecondary
-            text="Volver atrás"
+            isTertiary
+            text="Volver al carrito"
             className="w-full"
           />
         </div>

@@ -7,4 +7,5 @@ export const ROUTES = {
   CART: "/cart",
   CONTACT: "/contact",
   CHECKOUT: "/checkout",
+  CHECKOUT2: "/checkoutV2",
 };

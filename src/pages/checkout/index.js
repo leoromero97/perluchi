@@ -39,7 +39,7 @@ function CheckoutPage() {
   }));
 
   const orderSummary = {
-    totalPrice: total.totalPrice,
+    totalPrice: total.totalPrice.toLocaleString(),
     productsQuantity: total.productQuantity,
     products: productOverview,
     date: dateOrder,
@@ -103,8 +103,6 @@ function CheckoutPage() {
               onSubmit={handleOnSubmit}
               onPaymentMethodChange={handlePaymentMethodChange}
               values={values}
-              productQuantity={total.productQuantity}
-              totalPrice={total.totalPrice}
               errorValidationEmail={errorValidation}
               className="md:w-130 order-2 md:order-1"
             />

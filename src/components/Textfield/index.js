@@ -15,8 +15,8 @@ function Textfield({
   ...props
 }) {
   return (
-    <div className={clsx('flex flex-col', className)}>
-      {label && <label htmlFor={name}>{label}</label>}
+    <div className={clsx('flex flex-col gap-2', className)}>
+      {label && <label htmlFor={name} className="text-xs md:text-sm font-bold">{label}</label>}
       <input
         className="flex h-full flex-1 rounded-xl border border-gray-300 py-3 px-4 placeholder:text-gray-300"
         onChange={onChange}

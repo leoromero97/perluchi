@@ -12,11 +12,19 @@ import Error from "../Error";
 import ItemDetail from "../ItemDetail";
 import { db } from "../../firebase/config";
 import vectorErrorSearch from "../../assets/vc-undraw_web_search_re_efla.svg";
+import useCart from "../../hooks/cart/useCart";
+import Toast from "../Toast";
+import Button from "../Button";
+import { ROUTES } from "../../constants/routes";
+import icCart from "../../assets/ic-shopping-cart.svg";
+import { baseButtonStyle } from "../Button/constants";
 
 function ItemDetailContainer({ className, itemId }) {
+  const { products, total } = useCart();
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const isError = !itemId || data === undefined;
+  const formattedPrice = `$${total.totalPrice.toLocaleString()}`;
 
   useEffect(() => {
     const getProducts = async () => {
@@ -37,10 +45,24 @@ function ItemDetailContainer({ className, itemId }) {
     getProducts();
   }, [itemId]);
 
+  const productQuantity = products
+    .filter((product) => product?.id === data?.id)
+    .map((product) => product.quantity)[0];
+
+  const textUnits = productQuantity === 1 ? " unidad" : " unidades";
+  const productMessage = `Agregaste ${productQuantity} ${textUnits}`;
+  const [addedProduct, setAddedProduct] = useState(false);
+  const handleAddProduct = () => {
+    setAddedProduct(true);
+    setTimeout(() => {
+      setAddedProduct(false);
+    }, 3000);
+  };
+
   return (
     <div
       className={clsx(
-        "flex gap-6 items-center justify-center max-w-screen-xl w-full py-8",
+        "flex flex-col gap-6 items-center justify-center max-w-screen-xl w-full py-8",
         className
       )}
     >
@@ -55,6 +77,18 @@ function ItemDetailContainer({ className, itemId }) {
           description={data?.description}
           ingredients={data?.ingredients}
           note={data?.note}
+          onAddProduct={handleAddProduct}
+        />
+      )}
+      {addedProduct && (
+        <Toast isSuccess message={productMessage} className="absolute top-36" />
+      )}
+      {total.productQuantity !== 0 && (
+        <Button
+          to={ROUTES.CART}
+          text={`Ver carrito (${formattedPrice})`}
+          className={clsx('fixed bottom-32 md:w-full md:max-w-7xl shadow-md bg-yellow-default hover:bg-yellow-300', baseButtonStyle)}
+          icon={{ src: icCart, alt: 'Ícono carrito', }}
         />
       )}
       {isError && !isLoading && (
