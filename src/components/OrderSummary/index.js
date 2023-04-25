@@ -12,7 +12,7 @@ function OrderSummary({ className, productQuantity, totalPrice }) {
       </div>
       <div className="flex gap-4">
         <p className="text-yellow-800">Precio total:</p>
-        <p className="font-semibold">${totalPrice}</p>
+        <p className="font-semibold">${totalPrice.toLocaleString()}</p>
       </div>
       <Toast isInfo message="Tu pedido podría demorar entre 35 y 50 minutos" />
     </div>

@@ -81,7 +81,7 @@ function CartPage() {
                           ? product?.quantity.toString().concat(" unidades")
                           : product?.quantity.toString().concat(" unidad")}
                       </p>
-                      <p>${product?.price * product.quantity}</p>
+                      <p>${(product?.price * product.quantity).toLocaleString()}</p>
                       <button
                         onClick={() => handleOnTash(product.id)}
                         className="hover:bg-red active:bg-red rounded-md p-1"
@@ -104,12 +104,12 @@ function CartPage() {
                   </div>
                   <div className="flex gap-4">
                     <p className="text-yellow-800">Precio total:</p>
-                    <p className="font-semibold">${total?.totalPrice}</p>
+                    <p className="font-semibold">${total?.totalPrice.toLocaleString()}</p>
                   </div>
                 </div>
                 <div className="flex flex-col w-full gap-2">
                   <Button
-                    to={ROUTES.CHECKOUT}
+                    to={ROUTES.CHECKOUT2}
                     isPrimary
                     text="Continuar compra"
                     className="w-full"

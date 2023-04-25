@@ -8,6 +8,7 @@ import Detail from "./pages/detail/index";
 import Category from "./pages/category/index";
 import CartPage from "./pages/cart";
 import CheckoutPage from "./pages/checkout";
+import CheckoutPage2 from "./pages/checkoutV2";
 import NotFoundPage from "./pages/not-found";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             />
             <Route path={`${ROUTES.PRODUCT_DETAIL}/:id`} element={<Detail />} />
             <Route path={ROUTES.CHECKOUT} element={<CheckoutPage />} />
+            <Route path="/checkoutV2" element={<CheckoutPage2 />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>

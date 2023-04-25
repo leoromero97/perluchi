@@ -1,7 +1,6 @@
 import Button from "../Button";
 import Breadcrumb from "../Breadcrumb";
 import Chip from "../Chip";
-import Toast from "../Toast";
 import { ROUTES } from "../../constants/routes";
 import useCart from "../../hooks/cart/useCart";
 import imagePlaceholder from "../../assets/image-placeholder.png";
@@ -15,8 +14,9 @@ function ItemDetail({
   name = "",
   price = 0,
   note = "",
+  onAddProduct
 }) {
-  const { addProduct, products } = useCart();
+  const { addProduct } = useCart();
   const percentaje = 0.4;
   const lastPrice = price * percentaje + Number(price);
   const product = {
@@ -31,19 +31,10 @@ function ItemDetail({
     { label: categoryLabel, slug: `${ROUTES.CATEGORY}/${categoryLabel}` },
     { label: name, slug: "" },
   ];
-  const cartProductId = products
-    .map((product) => product?.id)
-    .filter((idProduct) => idProduct === id)[0];
-
-  const productQuantity = products
-    .filter((product) => product?.id === id)
-    .map((product) => product.quantity)[0];
-
-  const textUnits = productQuantity === 1 ? " unidad" : " unidades";
-  const productMessage = `Agregaste ${productQuantity} ${textUnits}`;
 
   const handleOnClick = () => {
     addProduct({ ...product, quantity: 1 });
+    onAddProduct();
   };
 
   return (
@@ -65,19 +56,18 @@ function ItemDetail({
             {note && <Chip label={note} />}
           </div>
           {name && <p className="text-xl md:text-3xl font-bold">{name}</p>}
-          <span className="text-sm text-gray-500">Antes: ${lastPrice}</span>
-          {price && <span className="text-3xl md:text-5xl font-medium">${price}</span>}
+          <span className="text-sm text-gray-500 line-through">Antes: ${lastPrice.toLocaleString()}</span>
+          {price && <span className="text-3xl md:text-5xl font-medium">${price.toLocaleString()}</span>}
           <div className="flex flex-col gap-6 items-center">
-            {cartProductId && <Toast isSuccess message={productMessage} />}
             <Button
               isButton
-              isPrimary
+              isSecondary
               text="Agregar al carrito"
               className="w-full"
               onClick={handleOnClick}
             />
             <Button
-              isSecondary
+              isTertiary
               text="Pedir ahora"
               className="w-full"
               messageOrderExternal={messageOrder}
